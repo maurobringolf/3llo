@@ -20,7 +20,7 @@ module Tr3llo
         attr_reader :card_id, :board_id
 
         def prompt_for_list_id!(board_id)
-          board_id = $container.resolve(:board)[:id]
+          board_id = $container.resolve(:board).id
           lists = Tr3llo::API::List.find_all_by_board(board_id)
 
           @list_id =

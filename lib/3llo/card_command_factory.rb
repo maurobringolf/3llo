@@ -20,16 +20,16 @@ module Tr3llo
       case subcommand
       when 'list'
         is_mine, _ = *args
-        board_id = $container.resolve(:board)[:id]
+        board_id = $container.resolve(:board).id
 
         if is_mine == 'mine'
-          user_id = $container.resolve(:user)[:id]
+          user_id = $container.resolve(:user).id
           Command::Card::ListMineCommand.new(board_id, user_id)
         else
           Command::Card::ListCommand.new(board_id)
         end
       when 'add'
-        board_id = $container.resolve(:board)[:id]
+        board_id = $container.resolve(:board).id
         Command::Card::AddCommand.new(board_id)
       when 'show'
         card_id, _ = args
@@ -42,15 +42,15 @@ module Tr3llo
         Command::Card::CommentCommand.new(card_id)
       when 'move'
         card_id, _ = args
-        board_id = $container.resolve(:board)[:id]
+        board_id = $container.resolve(:board).id
         Command::Card::MoveCommand.new(card_id, board_id)
       when 'self-assign'
         card_id, _ = args
-        user_id = $container.resolve(:user)[:id]
+        user_id = $container.resolve(:user).id
         Command::Card::SelfAssignCommand.new(card_id, user_id)
       when 'assign'
         card_id, _ = args
-        board_id = $container.resolve(:board)[:id]
+        board_id = $container.resolve(:board).id
         Command::Card::AssignCommand.new(card_id, board_id)
       else
         Command::Card::InvalidCommand.new

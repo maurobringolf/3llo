@@ -12,7 +12,7 @@ module Tr3llo
     def factory
       case subcommand
       when 'list'
-        board_id = $container.resolve(:board)[:id]
+        board_id = $container.resolve(:board).id
         Command::List::ListCommand.new(board_id)
       when 'cards'
         list_id, _ = args

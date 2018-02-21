@@ -9,14 +9,13 @@ module Tr3llo
         def prompt_for_user_id(users)
           interface.input.select(
             'Choose the user to be assigned',
-            users.map { |user| [user[:username], user[:id]] }.to_h
+            users.map { |user| [user.username, user.id] }.to_h
           )
         end
 
         private
 
         attr_reader :interface
-
       end
     end
   end

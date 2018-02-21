@@ -12,7 +12,7 @@ module Tr3llo
     def factory
       case subcommand
       when 'list'
-        user_id = $container.resolve(:user)[:id]
+        user_id = $container.resolve(:user).id
         Command::Board::ListCommand.new(user_id)
       when 'select'
         Command::Board::SelectCommand.new

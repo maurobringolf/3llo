@@ -3,7 +3,7 @@ module Tr3llo
     module Board
       class SelectCommand
         def execute
-          user_id = $container.resolve(:user)[:id]
+          user_id = $container.resolve(:user).id
           boards = API::Board.find_all_by_user(user_id)
           selected_board_id = select_board(boards)
           board = load_board(selected_board_id)

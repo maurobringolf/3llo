@@ -26,7 +26,7 @@ module Tr3llo
         end
 
         def prompt_for_user_id!(board_id)
-          board_id = $container.resolve(:board)[:id]
+          board_id = $container.resolve(:board).id
           users = Tr3llo::API::User.find_all_by_board(board_id)
 
           @user_id =

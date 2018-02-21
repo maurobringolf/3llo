@@ -5,28 +5,19 @@ module Tr3llo
 
       def find(user_id)
         url = "/members/#{user_id}"
+        body = client.get(url, key: key, token: token)
+        user_payload = JSON.parse(body)
 
-        JSON.parse(
-          client.get(
-            url,
-            key: key,
-            token: token
-          ),
-          symbolize_names: true
-        )
+        UserModel.new(user_payload)
       end
 
       def find_all_by_board(board_id)
         url = "/board/#{board_id}/members"
+        body = client.get(url, key: key, token: token)
 
-        JSON.parse(
-          client.get(
-            url,
-            key: key,
-            token: token
-          ),
-          symbolize_names: true
-        )
+        JSON.parse(body).map do |user_payload|
+          UserModel.new(user_payload)
+        end
       end
 
       private
