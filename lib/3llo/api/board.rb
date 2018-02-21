@@ -4,25 +4,24 @@ module Tr3llo
       extend self
 
       def find_all_by_user(user_id)
-        JSON.parse(
-          client.get(
-            "/members/#{user_id}/boards",
-            key: api_key,
-            token: api_token,
-          ),
-          symbolize_names: true
+        body = client.get(
+          "/members/#{user_id}/boards",
+          key: api_key,
+          token: api_token
         )
+
+        JSON.parse(body).map do |board_payload|
+          BoardModel.new(board_payload)
+        end
       end
 
       def find(board_id)
-        JSON.parse(
-          client.get(
-            "/boards/#{board_id}",
-            key: api_key,
-            token: api_token,
-          ),
-          symbolize_names: true
+        body = client.get(
+          "/boards/#{board_id}",
+          key: api_key,
+          token: api_token,
         )
+        BoardModel.new(JSON.parse(body))
       end
 
       private

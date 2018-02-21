@@ -17,7 +17,7 @@ module Tr3llo
         attr_reader :interface
 
         def present_board(board)
-          interface.puts "[#{board[:id].labelize}] - #{board[:name]}"
+          interface.puts("[#{board.slug.labelize}] - #{board.name}")
         end
       end
     end

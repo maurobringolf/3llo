@@ -3,6 +3,7 @@ require "3llo/version"
 require "3llo/client"
 require "3llo/presenter"
 require "3llo/interface"
+require "3llo/model"
 require 'container'
 require 'json'
 
